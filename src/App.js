@@ -1,27 +1,21 @@
-import React from "react";
-import Text from "./components/Text"
-import '/style.css'
-import Content from './components/Content'
-import Footer from './components/Footer'
-import Header from './components/Header'
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import TodoPage from "./page/TodoPage";
+import StyleProvider from "./providers/StyleProvider";
+
+
+export const Context = createContext(null)
 
 function App() {
+  const [ search, setSearch ] = useState('')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context.Provider value={{ search, setSearch }}>
+      <div className="App">
+       <StyleProvider>
+          <TodoPage/>
+        </StyleProvider>
+     </div>
+    </Context.Provider>
   );
 }
 
